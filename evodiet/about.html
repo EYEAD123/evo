@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عننا - Evodiet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero {
+            text-align: center;
+            padding: 6rem 5% 4rem;
+            background: radial-gradient(ellipse at top, rgba(255,108,0,0.06) 0%, transparent 70%);
+            border-bottom: 1px solid rgba(255,108,0,0.08);
+        }
+        .about-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255,108,0,0.1);
+            color: var(--primary-orange);
+            border: 1px solid rgba(255,108,0,0.2);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        .about-hero h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+        .about-hero p {
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: rgba(255,108,0,0.08);
+            border-top: 1px solid rgba(255,108,0,0.08);
+            border-bottom: 1px solid rgba(255,108,0,0.08);
+        }
+        .stat-card {
+            background: var(--deep-black);
+            padding: 2.5rem 1rem;
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+        .stat-label { color: var(--text-gray); font-size: 0.85rem; }
+        .about-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 5%;
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .about-text h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1.2rem; }
+        .about-text p { color: var(--text-gray); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+        .about-features { display: flex; flex-direction: column; gap: 1.2rem; }
+        .feature-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: var(--card-bg-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 1.2rem 1.4rem;
+            transition: border-color 0.3s;
+        }
+        .feature-item:hover { border-color: var(--border-orange); }
+        .feature-icon {
+            width: 40px; height: 40px;
+            background: rgba(255,108,0,0.1);
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary-orange);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .feature-item h4 { font-size: 0.95rem; margin-bottom: 0.3rem; font-weight: 700; }
+        .feature-item p { font-size: 0.82rem; color: var(--text-gray); line-height: 1.6; margin: 0; }
+        .about-cta {
+            text-align: center;
+            padding: 5rem 5%;
+            background: linear-gradient(to bottom, transparent, rgba(255,108,0,0.04));
+            border-top: 1px solid rgba(255,108,0,0.08);
+        }
+        .about-cta h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.8rem; }
+        .about-cta p { color: var(--text-gray); font-size: 1rem; }
+        @media (max-width: 768px) {
+            .about-stats { grid-template-columns: 1fr 1fr; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <nav class="drawer" id="mobileMenu">
+        <button class="drawer-close" id="closeDrawer">&times;</button>
+        <div class="drawer-content">
+            <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="content.html"><i class="fas fa-utensils"></i> المحتوى الغذائي</a>
+            <a href="about.html" class="active"><i class="fas fa-info-circle"></i> من نحن</a>
+            <a href="contact.html"><i class="fas fa-envelope"></i> تواصل معنا</a>
+        </div>
+    </nav>
+
+    <header class="main-header">
+        <div class="header-container">
+            <button class="hamburger-btn" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+            <div class="logo">Evo<span class="orange">diet</span></div>
+            <nav class="nav-center">
+                <a href="index.html">الرئيسية</a>
+                <a href="content.html">المحتوى</a>
+                <a href="about.html" class="active">من نحن</a>
+                <a href="contact.html">تواصل معنا</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../index.html" class="home-link"><i class="fas fa-home"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-hero">
+            <div>
+                <span class="about-badge"><i class="fas fa-fire"></i> قصتنا</span>
+                <h1>بنؤمن إن كل جسم يستحق <span class="orange">خطة ذكية</span></h1>
+                <p>Evodiet مش بس موقع حسابات — هو رفيقك العلمي اللي بيفهم جسمك ويصمم لك خطة دقيقة بناءً على بياناتك الحقيقية.</p>
+            </div>
+        </section>
+
+        <section class="about-stats">
+            <div class="stat-card">
+                <div class="stat-num orange">+5</div>
+                <div class="stat-label">معادلات علمية معتمدة</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num orange">100%</div>
+                <div class="stat-label">مجاني وبدون إعلانات</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num orange">3</div>
+                <div class="stat-label">أهداف متخصصة</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num orange">∞</div>
+                <div class="stat-label">تمارين وخطط وجبات</div>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>ليه <span class="orange">Evodiet</span>؟</h2>
+                    <p>معظم المواقع بتديك رقم سعرات وتسيبك. إحنا بنحسب الـ BMR بأدق المعادلات العلمية — Cunningham, Katch-McArdle, Navy Method — بناءً على بياناتك الفعلية زي نسبة الدهون والعضلات والمقاسات.</p>
+                    <p>النتيجة؟ خطة أكل وتمرين مخصصة لجسمك إنت، مش لأي حد تاني.</p>
+                    <a href="content.html" class="btn-primary" style="margin-top:1.5rem; display:inline-flex;">
+                        <i class="fas fa-bolt"></i> جرّب دلوقتي
+                    </a>
+                </div>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-flask"></i></div>
+                        <div>
+                            <h4>دقة علمية</h4>
+                            <p>معادلات معتمدة من أبحاث التغذية الرياضية — مش تخمين.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-dumbbell"></i></div>
+                        <div>
+                            <h4>بيت، جيم، وكاليستنيكس</h4>
+                            <p>تمارين لكل بيئة ولكل مجموعة عضلية بالتفصيل.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+                        <div>
+                            <h4>وجبات مصرية واقعية</h4>
+                            <p>أكل بتعرفه وبتقدر تعمله — مش وصفات أجنبية صعبة.</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-lock"></i></div>
+                        <div>
+                            <h4>خصوصيتك محفوظة</h4>
+                            <p>مفيش حاجة بتتحفظ على سيرفراتنا — كل الحسابات في متصفحك.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-cta">
+            <h2>عايز تبدأ رحلتك؟</h2>
+            <p>ادخل بياناتك وخلّي Evodiet يصمم لك خطتك في ثواني.</p>
+            <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; margin-top:2rem;">
+                <a href="content.html" class="btn-primary"><i class="fas fa-calculator"></i> ابدأ الحاسبة</a>
+                <a href="contact.html" class="btn-secondary"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>جميع الحقوق محفوظة &copy; 2026 <span class="orange">Evodiet</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

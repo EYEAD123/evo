@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evotech - المحتوى الإبداعي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="home-icon">
+                <i class="fas fa-home"></i>
+            </a>
+            <nav class="nav-center">
+                <a href="index.html">الرئيسية</a>
+                <a href="content.html">المحتوى</a>
+                <a href="about.html">عننا</a>
+                <a href="contact.html">تواصل معنا</a>
+            </nav>
+            <div class="logo">Evotech</div>
+            <button class="hamburger" id="hamburgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">الرئيسية</a>
+            <a href="content.html">المحتوى</a>
+            <a href="about.html">عننا</a>
+            <a href="contact.html">تواصل معنا</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="dynamic-island-container">
+            <div class="dynamic-island">
+                <div class="filter-btn active" data-category="all">
+                    <i class="fas fa-border-all"></i>
+                </div>
+                <div class="filter-btn" data-category="blender">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="filter-btn" data-category="unreal">
+                    <div class="unreal-u-logo">U</div>
+                </div>
+
+                <div class="filter-btn games-logo" data-category="games">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+
+                <div class="filter-btn" data-category="davinci">
+                    <i class="fas fa-film"></i>
+                </div>
+                <div class="filter-btn" data-category="art">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="filter-btn" data-category="programming">
+                    <i class="fas fa-code"></i>
+                </div>
+            </div>
+        </section>
+
+        <div id="content-grid" class="posts-grid-layout"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Evotech. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="content-logic.js"></script>
+</body>
+</html>

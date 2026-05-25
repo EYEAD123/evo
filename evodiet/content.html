@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evodiet | المحتوى الذكي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ===== إصلاح الفورم على الموبايل ===== */
+    
+    </style>
+</head>
+<body>
+
+<!-- Mobile Drawer -->
+<div class="drawer-backdrop" id="drawerBackdrop" onclick="closeDrawer()"></div>
+<div class="drawer" id="mobileDrawer">
+    <button class="drawer-close" onclick="closeDrawer()"><i class="fas fa-times"></i></button>
+    <div class="drawer-content">
+        <a href="index.html">الرئيسية</a>
+        <a href="content.html" class="active">المحتوى</a>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html" class="active"><i class="fas fa-envelope"></i> تواصل معنا</a>
+    </div>
+</div>
+
+<header class="main-header">
+    <div class="header-container">
+        <button class="hamburger-btn" id="hamburgerBtn" onclick="openDrawer()"><i class="fas fa-bars"></i></button>
+        <div class="logo">Evo<span class="orange">diet</span></div>
+        <nav class="nav-center">
+            <a href="index.html">الرئيسية</a>
+            <a href="content.html" class="active">المحتوى</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+
+        </nav>
+        <div class="header-actions">
+            <a href="../index.html" class="home-link"><i class="fas fa-home"></i></a>
+        </div>
+    </div>
+</header>
+
+    <main class="content-wrapper">
+        <div class="dynamic-island-nav">
+            <div class="island" id="islandNav">
+                <div class="island-item active" data-target="calculator" title="حاسبة السعرات"><i class="fas fa-calculator"></i></div>
+                <div class="island-item disabled" id="mealLink" data-target="meals" title="خطة الوجبات"><i class="fas fa-utensils"></i></div>
+                <div class="island-item" data-target="workouts" title="جدول التمارين"><i class="fas fa-dumbbell"></i></div>
+            </div>
+        </div>
+
+        <!-- ===== قسم الحاسبة ===== -->
+        <section class="content-section active" id="calculator">
+            <div class="glass-card">
+                <h2 class="premium-title">تحليل <span class="orange">البيانات</span></h2>
+                <div class="form-grid">
+
+                    <!-- الهدف -->
+                    <div class="input-box full">
+                        <label>هدفك الحالي</label>
+                        <select id="goal">
+                            <option value="lose">خسارة وزن</option>
+                            <option value="gain">زيادة وزن (Bulking)</option>
+                            <option value="maintain">تنشيف (Cutting)</option>
+                        </select>
+                    </div>
+
+                    <!-- الوزن والطول جنب بعض -->
+                    <div class="input-box half">
+                        <label>الوزن (كجم)</label>
+                        <input type="number" id="weight" placeholder="0" inputmode="decimal">
+                    </div>
+                    <div class="input-box half">
+                        <label>الطول (سم)</label>
+                        <input type="number" id="height" placeholder="0" inputmode="decimal">
+                    </div>
+
+                    <!-- السن والجنس جنب بعض -->
+                    <div class="input-box half">
+                        <label>السن</label>
+                        <input type="number" id="age" placeholder="0" inputmode="numeric">
+                    </div>
+                    <div class="input-box half">
+                        <label>الجنس</label>
+                        <select id="gender">
+                            <option value="male">ذكر</option>
+                            <option value="female">أنثى</option>
+                        </select>
+                    </div>
+
+                    <!-- النشاط -->
+                    <div class="input-box full">
+                        <label>مستوى النشاط</label>
+                        <select id="activity">
+                            <option value="1.2">لا أتمرن</option>
+                            <option value="1.375">مجهود خفيف (1-3 أيام)</option>
+                            <option value="1.55">مجهود متوسط (3-5 أيام)</option>
+                            <option value="1.725">مجهود عالي (6-7 أيام)</option>
+                        </select>
+                    </div>
+
+                    <!-- نسبة الدهون -->
+                    <div class="input-box full">
+                        <label>نسبة الدهون % <span style="color:#555; font-size:0.78rem;">(اختياري)</span></label>
+                        <input type="number" id="bodyfat" placeholder="مثال: 18" inputmode="decimal">
+                    </div>
+                    <!-- نسبة العضلات -->
+                    <div class="input-box full">
+                        <label>نسبة العضلات % <span style="color:#555; font-size:0.78rem;">(اختياري — من جهاز InBody أو Dexa)</span></label>
+                        <input type="number" id="musclemass" placeholder="مثال: 42" inputmode="decimal">
+                    </div>
+
+<!-- ===== المقاسات منفصلة ===== -->
+<div class="measures-section">
+    <div class="measures-title">
+        <i class="fas fa-ruler-combined"></i>
+        المقاسات
+        <span class="optional-badge">اختياري</span>
+    </div>
+
+    <!-- مقاسات الذكور -->
+    <div class="measures-grid" id="measures-male">
+        <div class="measure-box">
+            <label><i class="fas fa-circle-notch"></i> الخصر (سم)</label>
+            <input type="number" id="m_waist" placeholder="مثال: 85" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-arrows-alt-v"></i> الرقبة (سم)</label>
+            <input type="number" id="m_neck" placeholder="مثال: 38" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-expand-alt"></i> الصدر (سم)</label>
+            <input type="number" id="m_chest" placeholder="مثال: 100" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-hand-rock"></i> الذراع (سم)</label>
+            <input type="number" id="m_arm" placeholder="مثال: 35" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-walking"></i> الفخذ (سم)</label>
+            <input type="number" id="m_thigh" placeholder="مثال: 55" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-shoe-prints"></i> السمانة (سم)</label>
+            <input type="number" id="m_calf" placeholder="مثال: 38" inputmode="decimal">
+        </div>
+    </div>
+
+    <!-- مقاسات الإناث -->
+    <div class="measures-grid" id="measures-female" style="display:none;">
+        <div class="measure-box">
+            <label><i class="fas fa-circle-notch"></i> الخصر (سم)</label>
+            <input type="number" id="f_waist" placeholder="مثال: 70" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-venus-mars"></i> الأرداف (سم)</label>
+            <input type="number" id="f_hips" placeholder="مثال: 95" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-arrows-alt-v"></i> الرقبة (سم)</label>
+            <input type="number" id="f_neck" placeholder="مثال: 32" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-expand-alt"></i> الصدر (سم)</label>
+            <input type="number" id="f_chest" placeholder="مثال: 90" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-walking"></i> الفخذ (سم)</label>
+            <input type="number" id="f_thigh" placeholder="مثال: 58" inputmode="decimal">
+        </div>
+        <div class="measure-box">
+            <label><i class="fas fa-shoe-prints"></i> السمانة (سم)</label>
+            <input type="number" id="f_calf" placeholder="مثال: 36" inputmode="decimal">
+        </div>
+    </div>
+</div>
+
+                </div>
+
+                <button class="btn-primary full" onclick="processData()" style="margin-top:16px;">
+                    <i class="fas fa-bolt" style="margin-left:6px;"></i>
+                    تحليل البيانات وعرض الخطة
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== قسم الوجبات ===== -->
+        <section class="content-section" id="meals">
+            <div class="stats-bar">
+    <div class="stat-item">السعرات: <span id="resCalories" class="orange">0</span></div>
+    <div class="stat-item">المياه: <span id="resWater" class="orange">0</span> لتر</div>
+    <div class="stat-item">نسبة الدهون: <span id="resBF" class="orange">—</span></div>
+    </div>
+            <div class="meals-grid" id="mealsContainer"></div>
+        </section>
+
+        <!-- ===== قسم التمارين ===== -->
+<section class="content-section" id="workouts">
+    <!-- أزرار البيئة — فضلت زي ما هي -->
+    <div class="workout-main-tabs">
+        <button class="env-btn active" onclick="selectEnv('home')"><i class="fas fa-home"></i> تمارين البيت</button>
+        <button class="env-btn" onclick="selectEnv('gym')"><i class="fas fa-dumbbell"></i> تمارين الجيم</button>
+        <button class="env-btn" onclick="selectEnv('cali')"><i class="fas fa-child"></i> كاليستنيكس</button>
+        <button class="env-btn" onclick="selectEnv('cardio')"><i class="fas fa-running"></i> كارديو</button>
+    </div>
+
+    <!-- الـ layout الجديد: sidebar + content -->
+    <div class="workout-layout">
+        <!-- السايدبار على الشمال -->
+        <div class="muscle-sidebar" id="muscleTabs">
+            <button class="tab-btn active" onclick="filterWorkouts('chest', this)"><i class="fas fa-expand-alt"></i> صدر</button>
+            <button class="tab-btn" onclick="filterWorkouts('back', this)"><i class="fas fa-align-justify"></i> ظهر</button>
+            <button class="tab-btn" onclick="filterWorkouts('legs_front', this)"><i class="fas fa-walking"></i> رجل أماميات</button>
+            <button class="tab-btn" onclick="filterWorkouts('legs_back', this)"><i class="fas fa-running"></i> رجل خلفيات</button>
+            <button class="tab-btn" onclick="filterWorkouts('arms_biceps', this)"><i class="fas fa-hand-rock"></i> بايسبس</button>
+            <button class="tab-btn" onclick="filterWorkouts('arms_triceps', this)"><i class="fas fa-hand-paper"></i> ترايسبس</button>
+            <button class="tab-btn" onclick="filterWorkouts('shoulders', this)"><i class="fas fa-user"></i> أكتاف</button>
+            <button class="tab-btn" onclick="filterWorkouts('abs', this)"><i class="fas fa-circle"></i> بطن</button>
+            <button class="tab-btn" onclick="filterWorkouts('forearms', this)"><i class="fas fa-fist-raised"></i> ساعد ورست</button>
+            <button class="tab-btn" onclick="filterWorkouts('calves', this)"><i class="fas fa-shoe-prints"></i> سمانة</button>
+        </div>
+
+        <!-- منطقة عرض التمارين -->
+        <div class="workout-grid" id="workoutDisplay"></div>
+    </div>
+</section>
+
+    </main>
+
+    <footer class="main-footer">
+        <p>جميع الحقوق محفوظة &copy; 2026 <span class="orange">Evodiet</span></p>
+    </footer>
+
+    <script src="content-logic.js"></script>
+</body>
+</html>

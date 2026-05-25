@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - Evoclinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        .contact-container {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .contact-card {
+            background: #111;
+            padding: 50px 30px;
+            border-radius: 25px;
+            border: 1px solid #222;
+            box-shadow: 0 10px 30px rgba(0, 204, 255, 0.05);
+        }
+        .contact-card h1 {
+            color: #00ccff;
+            margin-bottom: 15px;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        .social-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #fff;
+            text-decoration: none;
+            transition: 0.4s;
+            border: 1px solid #333;
+        }
+        .social-btn.fb:hover { background: #1877f2; border-color: #1877f2; transform: translateY(-5px); }
+        .social-btn.ig:hover { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-color: transparent; transform: translateY(-5px); }
+        
+        .contact-info {
+            margin-top: 40px;
+            color: #888;
+        }
+        .contact-info p { margin: 10px 0; }
+        .contact-info i { color: #00ccff; margin-left: 10px; }
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <div class="logo">Evoclinic</div>
+        <nav class="nav-center">
+            <a href="../index.html">الرئيسية</a>
+            <a href="../content.html">المحتوى الطبي</a>
+            <a href="about.html">من نحن</a>
+            <a href="contact.html">تواصل معنا</a>
+        </nav>
+        <a href="../../index.html" class="home-icon"><i class="fas fa-home"></i></a>
+        <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="../index.html">الرئيسية</a>
+        <a href="../content.html">المحتوى الطبي</a>
+        <a href="about.html">من نحن</a>
+        <a href="contact.html">تواصل معنا</a>
+    </div>
+</header>
+
+<main>
+    <div class="contact-container">
+        <div class="contact-card">
+            <h1>ابقَ على اتصال</h1>
+            <p>يسعدنا دائماً سماع استفساراتكم واقتراحاتكم لتطوير محتوى المنصة.</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-btn fb" title="فيسبوك">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-btn ig" title="انستجرام">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> info@evoclinic.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> القاهرة، مصر</p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer><p>&copy; 2026 Evoclinic. جميع الحقوق محفوظة.</p></footer>
+<script src="../script.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evoclinic - المحتوى الطبي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css"> </head>
+<body>
+
+<header>
+    <div class="header-container">
+        <div class="logo">Evoclinic</div>
+        <nav class="nav-center">
+            <a href="index.html">الرئيسية</a>
+            <a href="content.html">المحتوى الطبي</a>
+            <a href="pages/about.html">من نحن</a>
+            <a href="pages/contact.html">تواصل معنا</a>
+        </nav>
+        <a href="../index.html" class="home-icon"><i class="fas fa-home"></i></a>
+        <button class="hamburger" id="hamburgerBtn">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html">الرئيسية</a>
+        <a href="content.html">المحتوى الطبي</a>
+        <a href="pages/about.html">من نحن</a>
+        <a href="pages/contact.html">تواصل معنا</a>
+    </div>
+</header>
+
+<main>
+    <section class="search-container-section">
+        <div class="search-wrapper-style">
+            <input type="text" id="searchInput" placeholder="ابحث في المواضيع الطبية...">
+            <i class="fas fa-search"></i>
+        </div>
+    </section>
+
+    <div id="posts-container" class="posts-grid-layout"></div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Evoclinic. جميع الحقوق محفوظة.</p>
+</footer>
+
+<script src="content-script.js"></script>
+<script src="script.js"></script> </body>
+</html>

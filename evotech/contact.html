@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evotech - تواصل معنا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ========== CONTACT PAGE STYLES ========== */
+
+        .contact-hero {
+            position: relative;
+            padding: 90px 20px 50px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 70% 70% at 50% -10%, rgba(188,19,254,0.2) 0%, transparent 65%);
+            pointer-events: none;
+        }
+
+        .contact-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(188,19,254,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(188,19,254,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+        }
+
+        .contact-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-badge {
+            display: inline-block;
+            padding: 6px 20px;
+            border: 1px solid rgba(188,19,254,0.5);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: #bc13fe;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            background: rgba(188,19,254,0.06);
+        }
+
+        .contact-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .contact-hero h1 span { color: #bc13fe; text-shadow: 0 0 40px rgba(188,19,254,0.35); }
+
+        .contact-hero p {
+            color: #b0a0c0;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* ========== SOCIAL SECTION ========== */
+        .social-section {
+            padding: 40px 5% 140px;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            padding: 36px 44px;
+            border-radius: 24px;
+            border: 1px solid rgba(188,19,254,0.12);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            group: true;
+        }
+
+        /* Facebook */
+        .social-card.facebook {
+            background: linear-gradient(135deg, #0f001a 0%, #0a0014 60%, #060012 100%);
+        }
+        .social-card.facebook:hover {
+            border-color: #1877F2;
+            box-shadow: 0 20px 60px rgba(24,119,242,0.15), 0 0 0 1px rgba(24,119,242,0.2);
+            transform: translateY(-6px);
+        }
+
+        /* Instagram */
+        .social-card.instagram {
+            background: linear-gradient(135deg, #0f001a 0%, #0d0015 60%, #080010 100%);
+        }
+        .social-card.instagram:hover {
+            border-color: rgba(225,48,108,0.6);
+            box-shadow: 0 20px 60px rgba(225,48,108,0.12), 0 0 0 1px rgba(225,48,108,0.2);
+            transform: translateY(-6px);
+        }
+
+        /* Glow spot خلفي */
+        .social-card::before {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: 0.5s;
+            pointer-events: none;
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .social-card.facebook::before {
+            background: radial-gradient(circle, rgba(24,119,242,0.08) 0%, transparent 70%);
+        }
+        .social-card.instagram::before {
+            background: radial-gradient(circle, rgba(225,48,108,0.08) 0%, transparent 70%);
+        }
+        .social-card:hover::before { opacity: 1; }
+
+        /* خط علوي ملون */
+        .social-card::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            opacity: 0;
+            transition: 0.4s;
+        }
+        .social-card.facebook::after { background: linear-gradient(90deg, transparent, #1877F2, transparent); }
+        .social-card.instagram::after { background: linear-gradient(90deg, transparent, #E1306C, #833AB4, transparent); }
+        .social-card:hover::after { opacity: 1; }
+
+        .social-icon-wrapper {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+            position: relative;
+            transition: 0.4s;
+        }
+
+        .social-card.facebook .social-icon-wrapper {
+            background: rgba(24,119,242,0.1);
+            border: 1px solid rgba(24,119,242,0.25);
+            color: #1877F2;
+        }
+        .social-card.facebook:hover .social-icon-wrapper {
+            background: rgba(24,119,242,0.18);
+            box-shadow: 0 0 25px rgba(24,119,242,0.25);
+        }
+
+        .social-card.instagram .social-icon-wrapper {
+            background: rgba(225,48,108,0.08);
+            border: 1px solid rgba(225,48,108,0.2);
+            color: #E1306C;
+        }
+        .social-card.instagram:hover .social-icon-wrapper {
+            background: rgba(225,48,108,0.15);
+            box-shadow: 0 0 25px rgba(225,48,108,0.2);
+        }
+
+        .social-text {
+            flex: 1;
+        }
+
+        .social-platform {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .social-card.facebook .social-platform { color: #1877F2; }
+        .social-card.instagram .social-platform { color: #E1306C; }
+
+        .social-name {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .social-desc {
+            color: #b0a0c0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .social-arrow {
+            color: #3a2050;
+            font-size: 1.3rem;
+            transition: 0.4s;
+            flex-shrink: 0;
+        }
+
+        .social-card.facebook:hover .social-arrow { color: #1877F2; transform: translateX(-6px); }
+        .social-card.instagram:hover .social-arrow { color: #E1306C; transform: translateX(-6px); }
+
+        /* ========== DIVIDER ========== */
+        .or-divider {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: #3a2050;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .or-divider::before,
+        .or-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(188,19,254,0.15), transparent);
+        }
+
+        /* ========== BOTTOM CTA ========== */
+        .contact-cta {
+            background: linear-gradient(135deg, #0f001a, #0a0012);
+            border: 1px solid rgba(188,19,254,0.15);
+            border-radius: 24px;
+            padding: 44px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 200px;
+            background: radial-gradient(ellipse, rgba(188,19,254,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .contact-cta h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .contact-cta h3 span { color: #bc13fe; }
+
+        .contact-cta p {
+            color: #b0a0c0;
+            margin-bottom: 28px;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .cta-btn.fb {
+            background: #1877F2;
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(24,119,242,0.3);
+        }
+        .cta-btn.fb:hover {
+            background: #1564d3;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(24,119,242,0.4);
+        }
+
+        .cta-btn.ig {
+            background: linear-gradient(135deg, #833AB4, #E1306C, #F77737);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(225,48,108,0.3);
+        }
+        .cta-btn.ig:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(225,48,108,0.4);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .social-card { padding: 24px 20px; gap: 18px; }
+            .social-icon-wrapper { width: 56px; height: 56px; font-size: 1.5rem; border-radius: 16px; }
+            .social-name { font-size: 1.2rem; }
+            .contact-cta { padding: 30px 20px; }
+            .contact-cta h3 { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="home-icon">
+                <i class="fas fa-home"></i>
+            </a>
+            <nav class="nav-center">
+                <a href="index.html">الرئيسية</a>
+                <a href="content.html">المحتوى</a>
+                <a href="about.html">عننا</a>
+                <a href="contact.html">تواصل معنا</a>
+            </nav>
+            <div class="logo">Evotech</div>
+            <button class="hamburger" id="hamburgerBtn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">الرئيسية</a>
+            <a href="content.html">المحتوى</a>
+            <a href="about.html">عننا</a>
+            <a href="contact.html">تواصل معنا</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="contact-hero">
+            <div class="contact-hero-inner">
+                <div class="contact-badge">Get In Touch</div>
+                <h1>تواصل <span>معنا</span></h1>
+                <p>نحن هنا دايماً. تابعنا على منصاتنا وكن جزءاً من مجتمع Evotech.</p>
+            </div>
+        </section>
+
+        <!-- SOCIAL CARDS -->
+        <div class="social-section">
+
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/evotech" target="_blank" class="social-card facebook">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-text">
+                    <div class="social-platform">Facebook</div>
+                    <div class="social-name">Evotech</div>
+                    <div class="social-desc">تابع آخر التحديثات، المقالات، والمحتوى الحصري على صفحتنا الرسمية.</div>
+                </div>
+                <i class="fas fa-arrow-left social-arrow"></i>
+            </a>
+
+            <div class="or-divider">أو</div>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/evotech" target="_blank" class="social-card instagram">
+                <div class="social-icon-wrapper">
+                    <i class="fab fa-instagram"></i>
+                </div>
+                <div class="social-text">
+                    <div class="social-platform">Instagram</div>
+                    <div class="social-name">@Evotech</div>
+                    <div class="social-desc">أعمال بصرية، خلف الكواليس، وومضات إبداعية يومية من عالم Evotech.</div>
+                </div>
+                <i class="fas fa-arrow-left social-arrow"></i>
+            </a>
+
+            <!-- Bottom CTA -->
+            <div class="contact-cta">
+                <h3>جاهز تنضم لـ <span>المجتمع؟</span></h3>
+                <p>اضغط وتابعنا الآن — المحتوى الجديد بينتظرك.</p>
+                <div class="cta-btns">
+                    <a href="https://www.facebook.com/evotech" target="_blank" class="cta-btn fb">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </a>
+                    <a href="https://www.instagram.com/evotech" target="_blank" class="cta-btn ig">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Evotech. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (hamburgerBtn && mobileMenu) {
+            hamburgerBtn.onclick = function(e) {
+                e.stopPropagation();
+                this.classList.toggle('active');
+                mobileMenu.classList.toggle('active');
+            };
+            document.addEventListener('click', (e) => {
+                if (!mobileMenu.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

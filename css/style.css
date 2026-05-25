@@ -1,0 +1,165 @@
+:root {
+    --primary-purple: #9f59ff;
+    --clinic-blue: #00d2ff;
+    --tech-purple: #9f59ff;
+    --diet-orange: #ff8c00;
+    --bg-dark: #030104;
+    --text-main: #ffffff;
+    --text-dim: rgba(255, 255, 255, 0.5);
+    --transition-ultra: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    direction: rtl;
+    overflow-x: hidden;
+}
+
+/* --- Hero Section --- */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-focus-circle {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(159, 89, 255, 0.06) 0%, transparent 70%);
+    z-index: 1;
+}
+
+/* أنيميشن التنفس المطور (نعومة فائقة) */
+.brand-logo-animated {
+    font-size: clamp(6rem, 20vw, 12rem);
+    font-weight: 900;
+    letter-spacing: 2rem;
+    margin: 0;
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(180deg, #fff 30%, rgba(195, 89, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: smoothBreathe 8s infinite ease-in-out;
+    filter: drop-shadow(0 0 20px rgba(159, 89, 255, 0.1));
+}
+
+@keyframes smoothBreathe {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 20px rgba(159, 89, 255, 0.1)); opacity: 0.9; }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 40px rgba(159, 89, 255, 0.3)); opacity: 1; }
+}
+
+.minimal-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(159, 89, 255, 0.03) 0%, transparent 60%);
+    z-index: -1;
+    animation: auraPulse 8s infinite ease-in-out;
+}
+
+@keyframes auraPulse {
+    0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* --- Tiles Section (Premium Reveal) --- */
+.tiles-wide {
+    max-width: 1200px;
+    margin: 0 auto 100px;
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.tile-card-wide {
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 30px;
+    transition: var(--transition-ultra);
+    position: relative;
+    overflow: hidden;
+}
+
+.tile-card-wide a {
+    text-decoration: none;
+    color: inherit;
+    padding: 4rem 3.5rem;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    position: relative;
+}
+
+.tile-icon-large {
+    width: 70px;
+    height: 70px;
+    stroke: var(--text-dim);
+    transition: var(--transition-ultra);
+}
+
+.tile-info { flex: 1; margin-right: 45px; }
+.tile-info h3 { font-size: 2.5rem; margin: 0 0 10px 0; font-weight: 800; transition: var(--transition-ultra); }
+.tile-info p { color: var(--text-dim); font-size: 1.15rem; max-width: 500px; }
+
+.tile-arrow { 
+    font-size: 2.5rem; 
+    opacity: 0; 
+    transform: translateX(40px); 
+    transition: var(--transition-ultra); 
+}
+
+/* --- الهوفر المطور (Liquid Transition) --- */
+
+/* Clinic */
+.evoclinic-theme:hover { background: rgba(0, 210, 255, 0.03); border-color: rgba(0, 210, 255, 0.3); transform: translateY(-10px); }
+.evoclinic-theme:hover h3 { color: var(--clinic-blue) !important; }
+.evoclinic-theme:hover .tile-icon-large { stroke: var(--clinic-blue) !important; }
+
+/* Tech */
+.evotech-theme:hover { background: rgba(159, 89, 255, 0.03); border-color: rgba(159, 89, 255, 0.3); transform: translateY(-10px); }
+.evotech-theme:hover h3 { color: var(--tech-purple) !important; }
+.evotech-theme:hover .tile-icon-large { stroke: var(--tech-purple) !important; }
+
+/* Diet (The Orange Focus) */
+.evodiet-theme:hover { background: rgba(255, 140, 0, 0.03); border-color: rgba(255, 140, 0, 0.4); transform: translateY(-10px); }
+.evodiet-theme:hover h3 { color: var(--diet-orange) !important; }
+.evodiet-theme:hover .tile-icon-large { stroke: var(--diet-orange) !important; }
+
+.tile-card-wide:hover .tile-arrow { opacity: 1; transform: translateX(0); }
+
+/* --- About Section (No Animation) --- */
+.about-premium {
+    padding: 120px 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.about-container {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 40px;
+    padding: 80px 50px;
+    max-width: 800px;
+    text-align: center;
+}
+
+.about-header h2 { font-size: 3rem; margin-bottom: 20px; font-weight: 800; }
+
+footer {
+    padding: 50px;
+    text-align: center;
+    color: rgba(255,255,255,0.1);
+    font-size: 0.9rem;
+}

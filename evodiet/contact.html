@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تواصل معنا - Evodiet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-wrapper {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 3rem 5% 5rem;
+        }
+        .contact-title {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .contact-title h1 {
+            font-size: clamp(1.8rem, 5vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.6rem;
+        }
+        .contact-title p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.7; }
+
+        /* ===== Card ===== */
+        .contact-card {
+            background: var(--card-bg-2);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            box-shadow: 0 8px 48px rgba(0,0,0,0.5);
+        }
+
+        /* ===== Form fields ===== */
+        .cf-group {
+            margin-bottom: 1.2rem;
+        }
+        .cf-group label {
+            display: block;
+            color: var(--text-gray);
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.3px;
+        }
+        .cf-group input,
+        .cf-group select {
+            width: 100%;
+            background: #000;
+            border: 1px solid #1e1e1e;
+            padding: 0.95rem 1rem;
+            border-radius: var(--radius-md);
+            color: #fff;
+            outline: none;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: border-color 0.25s, box-shadow 0.25s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .cf-group input:focus,
+        .cf-group select:focus {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255,108,0,0.08);
+        }
+        .cf-group select option { background: #111; }
+        .cf-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* ===== Channel selector ===== */
+        .channel-label {
+            display: block;
+            color: var(--text-gray);
+            font-size: 0.82rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        .channel-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
+        .channel-btn {
+            background: #000;
+            border: 1px solid #1e1e1e;
+            border-radius: var(--radius-md);
+            padding: 1rem 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 7px;
+            color: #666;
+            font-size: 0.82rem;
+            font-family: inherit;
+            font-weight: 600;
+        }
+        .channel-btn i { font-size: 1.4rem; }
+        .channel-btn:hover { border-color: #333; color: #aaa; }
+        .channel-btn.active[data-ch="whatsapp"] {
+            border-color: #25d366;
+            color: #25d366;
+            background: rgba(37,211,102,0.06);
+            box-shadow: 0 0 0 3px rgba(37,211,102,0.1);
+        }
+        .channel-btn.active[data-ch="telegram"] {
+            border-color: #229ed9;
+            color: #229ed9;
+            background: rgba(34,158,217,0.06);
+            box-shadow: 0 0 0 3px rgba(34,158,217,0.1);
+        }
+        .channel-btn.active[data-ch="email"] {
+            border-color: var(--primary-orange);
+            color: var(--primary-orange);
+            background: rgba(255,108,0,0.06);
+            box-shadow: 0 0 0 3px rgba(255,108,0,0.1);
+        }
+
+        /* ===== Submit button ===== */
+        .submit-btn {
+            width: 100%;
+            padding: 1.1rem;
+            border-radius: var(--radius-md);
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s;
+            background: var(--primary-orange);
+            color: #000;
+            margin-top: 0.5rem;
+        }
+        .submit-btn:hover {
+            background: #ff7b1a;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(255,108,0,0.3);
+        }
+        .submit-btn:active { transform: scale(0.98); }
+
+        /* ===== Error ===== */
+        .cf-error {
+            color: #ff4d4d;
+            font-size: 0.8rem;
+            margin-top: 0.4rem;
+            display: none;
+        }
+        .cf-group.has-error input,
+        .cf-group.has-error select {
+            border-color: #ff4d4d;
+        }
+        .cf-group.has-error .cf-error { display: block; }
+
+        @media (max-width: 540px) {
+            .cf-row { grid-template-columns: 1fr; }
+            .contact-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <nav class="drawer" id="mobileMenu">
+        <button class="drawer-close" id="closeDrawer">&times;</button>
+        <div class="drawer-content">
+            <a href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="content.html"><i class="fas fa-utensils"></i> المحتوى الغذائي</a>
+            <a href="about.html"><i class="fas fa-info-circle"></i> من نحن</a>
+            <a href="contact.html" class="active"><i class="fas fa-envelope"></i> تواصل معنا</a>
+        </div>
+    </nav>
+
+    <header class="main-header">
+        <div class="header-container">
+            <button class="hamburger-btn" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+            <div class="logo">Evo<span class="orange">diet</span></div>
+            <nav class="nav-center">
+                <a href="index.html">الرئيسية</a>
+                <a href="content.html">المحتوى</a>
+                <a href="about.html">من نحن</a>
+                <a href="contact.html" class="active">تواصل معنا</a>
+            </nav>
+            <div class="header-actions">
+                <a href="../index.html" class="home-link"><i class="fas fa-home"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="contact-wrapper">
+            <div class="contact-title">
+                <h1>تواصل <span class="orange">معنا</span></h1>
+                <p>املأ البيانات واختار طريقة التواصل المفضلة — هنرد عليك في أقرب وقت.</p>
+            </div>
+
+            <div class="contact-card">
+
+                <!-- الاسم والسن -->
+                <div class="cf-row">
+                    <div class="cf-group" id="grp-name">
+                        <label><i class="fas fa-user" style="color:var(--primary-orange); margin-left:5px;"></i> الاسم</label>
+                        <input type="text" id="cf-name" placeholder="اسمك الكامل">
+                        <span class="cf-error">من فضلك ادخل اسمك</span>
+                    </div>
+                    <div class="cf-group" id="grp-age">
+                        <label><i class="fas fa-calendar" style="color:var(--primary-orange); margin-left:5px;"></i> السن</label>
+                        <input type="number" id="cf-age" placeholder="مثال: 25" inputmode="numeric" min="10" max="99">
+                        <span class="cf-error">ادخل سن صحيح</span>
+                    </div>
+                </div>
+
+                <!-- رقم الفون -->
+                <div class="cf-group" id="grp-phone">
+                    <label><i class="fas fa-phone" style="color:var(--primary-orange); margin-left:5px;"></i> رقم الهاتف</label>
+                    <input type="tel" id="cf-phone" placeholder="مثال: 01012345678" inputmode="tel">
+                    <span class="cf-error">ادخل رقم هاتف صحيح</span>
+                </div>
+
+                <!-- منين -->
+                <div class="cf-group" id="grp-country">
+                    <label><i class="fas fa-map-marker-alt" style="color:var(--primary-orange); margin-left:5px;"></i> أنت منين؟</label>
+                    <select id="cf-country">
+                        <option value="">اختر...</option>
+                        <option>مصر</option>
+                        <option>السعودية</option>
+                        <option>الإمارات</option>
+                        <option>الكويت</option>
+                        <option>قطر</option>
+                        <option>البحرين</option>
+                        <option>عُمان</option>
+                        <option>الأردن</option>
+                        <option>المغرب</option>
+                        <option>تونس</option>
+                        <option>ليبيا</option>
+                        <option>السودان</option>
+                        <option>اليمن</option>
+                        <option>العراق</option>
+                        <option>سوريا</option>
+                        <option>لبنان</option>
+                        <option>فلسطين</option>
+                        <option>دولة أخرى</option>
+                    </select>
+                    <span class="cf-error">اختر بلدك</span>
+                </div>
+
+                <!-- الهدف -->
+                <div class="cf-group" id="grp-goal">
+                    <label><i class="fas fa-bullseye" style="color:var(--primary-orange); margin-left:5px;"></i> هدفك</label>
+                    <select id="cf-goal">
+                        <option value="">اختر هدفك...</option>
+                        <option value="lose">خسارة وزن</option>
+                        <option value="gain">زيادة وزن (Bulking)</option>
+                        <option value="cut">تنشيف (Cutting)</option>
+                        <option value="other">استشارة عامة</option>
+                    </select>
+                    <span class="cf-error">اختر هدفك</span>
+                </div>
+
+                <!-- قناة التواصل -->
+                <span class="channel-label"><i class="fas fa-share-alt" style="color:var(--primary-orange); margin-left:5px;"></i> تواصل عن طريق</span>
+                <div class="channel-options" id="grp-channel">
+                    <button class="channel-btn active" data-ch="whatsapp" onclick="selectChannel(this)">
+                        <i class="fab fa-whatsapp"></i>
+                        واتساب
+                    </button>
+                    <button class="channel-btn" data-ch="telegram" onclick="selectChannel(this)">
+                        <i class="fab fa-telegram-plane"></i>
+                        تيليجرام
+                    </button>
+                    <button class="channel-btn" data-ch="email" onclick="selectChannel(this)">
+                        <i class="fas fa-envelope"></i>
+                        إيميل
+                    </button>
+                </div>
+
+                <button class="submit-btn" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                    إرسال الرسالة
+                </button>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>جميع الحقوق محفوظة &copy; 2026 <span class="orange">Evodiet</span></p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // ===== إعدادات التواصل — غيّر البيانات هنا =====
+        const WHATSAPP_NUMBER = '201000000000'; // رقم الواتساب
+        const EMAIL_ADDRESS = 'info@evodiet.com'; // الإيميل
+        
+// بيانات بوت التيليجرام الخاص بك
+const TELEGRAM_TOKEN = '8897597290:AAHiVfDo9RtebFmrliof_sJA2SRSp9PyWEc'; 
+const TELEGRAM_CHAT_ID = '7588896859';
+        let selectedChannel = 'whatsapp';
+
+        function selectChannel(btn) {
+            document.querySelectorAll('.channel-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            selectedChannel = btn.dataset.ch;
+        }
+
+        function validate() {
+            let ok = true;
+            const fields = [
+                { id: 'grp-name',    val: () => document.getElementById('cf-name').value.trim().length >= 2 },
+                { id: 'grp-age',     val: () => { const v = parseInt(document.getElementById('cf-age').value); return v >= 10 && v <= 99; } },
+                { id: 'grp-phone',   val: () => document.getElementById('cf-phone').value.trim().length >= 8 },
+                { id: 'grp-country', val: () => document.getElementById('cf-country').value !== '' },
+                { id: 'grp-goal',    val: () => document.getElementById('cf-goal').value !== '' },
+            ];
+            fields.forEach(f => {
+                const grp = document.getElementById(f.id);
+                if (f.val()) {
+                    grp.classList.remove('has-error');
+                } else {
+                    grp.classList.add('has-error');
+                    ok = false;
+                }
+            });
+            return ok;
+        }
+
+        function buildMessage() {
+            const name    = document.getElementById('cf-name').value.trim();
+            const age     = document.getElementById('cf-age').value.trim();
+            const phone   = document.getElementById('cf-phone').value.trim();
+            const country = document.getElementById('cf-country').value;
+            const goalMap = { lose: 'خسارة وزن', gain: 'زيادة وزن (Bulking)', cut: 'تنشيف (Cutting)', other: 'استشارة عامة' };
+            const goal    = goalMap[document.getElementById('cf-goal').value] || '';
+
+            return `مرحباً Evodiet 👋\n\nالاسم: ${name}\nالسن: ${age}\nالهاتف: ${phone}\nالبلد: ${country}\nالهدف: ${goal}\n\nأرجو التواصل معي 🙏`;
+        }
+
+        async function sendMessage() {
+            if (!validate()) return;
+
+            const msg = buildMessage();
+            const encoded = encodeURIComponent(msg);
+
+            if (selectedChannel === 'whatsapp') {
+                window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encoded}`, '_blank');
+            } 
+            else if (selectedChannel === 'telegram') {
+                // إرسال البيانات مباشرة للبوت عبر الـ API
+                const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+                
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: TELEGRAM_CHAT_ID,
+                            text: msg
+                        })
+                    });
+
+                    if (response.ok) {
+                        alert('✅ تم إرسال بياناتك بنجاح للبوت!');
+                    } else {
+                        alert('❌ فشل الإرسال، تأكد من التوكن و الـ Chat ID.');
+                    }
+                } catch (error) {
+                    alert('❌ فشل الاتصال، تأكد من الإنترنت.');
+                }
+            } 
+            else if (selectedChannel === 'email') {
+                const subject = encodeURIComponent('طلب تواصل من Evodiet');
+                window.open(`mailto:${EMAIL_ADDRESS}?subject=${subject}&body=${encoded}`, '_blank');
+            }
+        }
+    </script>
+</body>
+</html>

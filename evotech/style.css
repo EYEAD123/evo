@@ -1,0 +1,291 @@
+/* إعدادات عامة */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #05000a;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+header {
+    background: #0f001a;
+    border-bottom: 1px solid rgba(188, 19, 254, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 75px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ترتيب اللابتوب الافتراضي: لوجو (1) - منيو (2) - هوم (3) */
+.logo { order: 1; font-size: 1.8rem; font-weight: 800; color: #bc13fe; }
+.nav-center { order: 2; display: flex; gap: 2rem; }
+.home-icon { order: 3; color: #bc13fe; font-size: 1.4rem; text-decoration: none; }
+
+.nav-center a { text-decoration: none; color: #d1b3ff; transition: 0.3s; font-weight: 500; }
+.nav-center a:hover { color: #bc13fe; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; }
+.hamburger span { width: 25px; height: 3px; background: #bc13fe; }
+
+.mobile-menu { display: none; }
+
+/* محتوى الصفحة */
+main {
+    flex: 1;
+    padding-bottom: 80px; /* مسافة للفوتر الثابت */
+}
+
+.hero-section { display: flex; align-items: center; justify-content: center; text-align: center; padding: 40px 20px; height: 80vh; }
+.hero-content h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 15px; }
+.hero-content p { color: #b0a0c0; margin-bottom: 30px; max-width: 650px; line-height: 1.6; margin: 0 auto 30px; }
+
+.btn-primary, .btn-secondary { padding: 14px 30px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-block; margin: 10px; }
+.btn-primary { background: #bc13fe; color: #fff; }
+.btn-secondary { border: 2px solid #bc13fe; color: #bc13fe; }
+
+/* الفوتر الثابت في الأسفل */
+footer {
+    padding: 1.5rem;
+    text-align: center;
+    background: #0a0015;
+    border-top: 1px solid rgba(188, 19, 254, 0.2);
+    color: #888;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+/* تعديلات الموبايل (أقل من 768px) */
+@media (max-width: 768px) {
+    .nav-center { display: none; }
+
+    /* الترتيب المطلوب: همبرجر يمين (1) - لوجو نص (2) - هوم يسار (3) */
+    .hamburger { 
+        order: 1; 
+        display: flex; 
+    } 
+    
+    .logo { 
+        order: 2; 
+        position: absolute; 
+        left: 50%; 
+        transform: translateX(-50%); 
+    }
+    
+    .home-icon { 
+        order: 3; 
+        display: block; 
+    }
+
+    .header-container { padding: 0 1.5rem; }
+
+    .mobile-menu { 
+        display: none; 
+        flex-direction: column; 
+        background: #110022; 
+        text-align: center; 
+        border-bottom: 2px solid #bc13fe;
+    }
+    
+    .mobile-menu.active { display: flex; }
+    .mobile-menu a { padding: 15px; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.05); }
+}
+/* --- إعدادات عامة وإصلاحات المنيو --- */
+
+/* إظهار منيو الموبايل عند إضافة كلاس active بواسطة JS */
+#mobileMenu.active {
+    display: flex !important;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* تحويل شكل الهمبرجر لعلامة X عند الفتح */
+#hamburgerBtn.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+#hamburgerBtn.active span:nth-child(2) { opacity: 0; }
+#hamburgerBtn.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* --- تصميم الـ Dynamic Island المطور --- */
+
+.dynamic-island-container {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+    padding: 0 20px;
+}
+
+.dynamic-island {
+    background: #0a0015; /* لون أغمق لزيادة التباين */
+    padding: 10px 25px;
+    border-radius: 50px; /* شكل كبسولة */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid rgba(188, 19, 254, 0.2);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.filter-btn {
+    color: #b0a0c0;
+    width: 42px; /* عرض ثابت ليناسب الأيقونات */
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+/* لوجو انريل المخصص (حرف U) */
+.unreal-u-logo {
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.filter-btn:hover {
+    color: #fff;
+    background: rgba(188, 19, 254, 0.1);
+    transform: scale(1.1);
+}
+
+.filter-btn.active {
+    background: #bc13fe; 
+    color: white;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.4);
+}
+
+/* عند تفعيل قسم انريل انجن */
+.filter-btn.active .unreal-u-logo {
+    background: white;
+    color: black;
+    border-color: white;
+}
+
+/* لوجو الجيمز في المنتصف */
+.games-logo {
+    font-size: 1.4rem;
+    color: #bc13fe;
+}
+.games-logo.active {
+    color: #fff;
+}
+
+/* إلغاء الـ Tooltip الافتراضي للمتصفح */
+.filter-btn[title]:hover::after {
+    content: none;
+    display: none;
+}
+
+/* --- تصميم شبكة الكروت --- */
+
+.posts-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+    padding: 20px 5%;
+    margin-bottom: 100px; /* مساحة للفوتر */
+}
+
+.card {
+    background: #0f001a;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(188, 19, 254, 0.1);
+    transition: 0.4s ease;
+    animation: fadeInUp 0.5s ease backwards; /* أنيميشن عند الظهور */
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: #bc13fe;
+    box-shadow: 0 10px 30px rgba(188, 19, 254, 0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.card:hover img {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 22px;
+}
+
+.card-body h3 {
+    color: #bc13fe;
+    margin-bottom: 12px;
+    font-size: 1.4rem;
+}
+
+.card-body p {
+    color: #b0a0c0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+/* استجابة الموبايل */
+@media (max-width: 600px) {
+    .dynamic-island {
+        gap: 8px;
+        padding: 8px 15px;
+    }
+    .filter-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+    }
+    .unreal-u-logo {
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
+    }
+}
+
+
+
+
+
+
+
